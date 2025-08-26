@@ -224,3 +224,55 @@ function printSecondLargest($numArr)
 
 echo "Second largest value is: " . printSecondLargest($numArr) . " \n";
 
+// 5. Is Sorted (non‑decreasing) — Print YES or NO.
+function isSorted($numArr)
+{
+    if(count($numArr) == 1)
+    {
+        return "Yes";
+    }
+
+    if(count($numArr) < 1)
+    {
+        return null;
+    }
+
+    for($i = 0; $i < count($numArr) - 1; $i++)
+    {
+        if($numArr[$i] > $numArr[$i + 1])
+        {
+            return "No";
+        }
+    }
+
+    return "Yes";
+}
+
+$resultIsSorted = isSorted($numArr);
+echo "Is Sorted in Ascending: " . $resultIsSorted . "\n";
+
+// 6. Sum of Prefixes — Given array, print running sums.
+function sumOfPrefixes($numArr)
+{
+    if(count($numArr) < 1)
+    {
+        return null;
+    }
+
+    $sum = 0;
+    $prefixSumArr = [];
+
+    foreach($numArr as $num)
+    {
+        $sum += $num;
+        $prefixSumArr[] = $sum;
+    }
+
+    return $prefixSumArr;
+}
+
+$resultPrefixArray = sumOfPrefixes($numArr);
+foreach($resultPrefixArray as $num)
+{
+    echo $num . " ";
+}
