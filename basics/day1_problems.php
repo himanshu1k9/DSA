@@ -95,3 +95,84 @@ function findMin($numArr)
 
 echo "MIN " . findMin($numArr) . PHP_EOL;
 
+// 2. Count Evens & Odds — Print evens odds counts.
+function countEvenOdd($numArr)
+{
+    if(count($numArr) < 1)
+    {
+        return null;
+    }
+
+    $evenCount = 0;
+    $oddCount = 0;
+
+    $start = 0;
+    $end = count($numArr) - 1;
+
+    while($start < $end)
+    {
+        if($numArr[$start] % 2 == 0)
+        {
+            $evenCount++;
+        } else {
+            $oddCount++;
+        }
+
+        if($start != $end)
+        {
+            if($numArr[$end] % 2 == 0)
+            {
+                $evenCount++;
+            } else {
+                $oddCount++;
+            }
+        }
+
+        $start++;
+        $end--;
+    }
+
+    return [$evenCount, $oddCount];
+}
+
+$evenOddResult = countEvenOdd($numArr);
+echo "Even Count " . ( $evenOddResult[0] ?? null ) . " Odd count " . ( $evenOddResult[1] ?? null );
+
+
+// 3. Reverse Array (in‑place) — Reverse and print in one line.
+
+function reverseArr($numArr)
+{
+    if(count($numArr) == 1)
+    {
+        return $numArr;
+    }
+
+    if(count($numArr) < 1)
+    {
+        return [];
+    }
+
+    $revArr = [];
+    for($i = count($numArr) - 1; $i >= 0; $i--)
+    {
+        $revArr[] = $numArr[$i];
+    }
+
+    return $revArr;
+}
+
+$reverseArray = reverseArr($numArr);
+
+function printReverseArr($reverseArray)
+{
+    if(count($reverseArray) >= 1)
+    {
+        for($i = 0; $i < count($reverseArray); $i++)
+        {
+            echo  $reverseArray[$i] . " ";
+        }
+    }
+}
+
+printReverseArr($reverseArray);
