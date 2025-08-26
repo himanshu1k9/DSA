@@ -136,7 +136,7 @@ function countEvenOdd($numArr)
 }
 
 $evenOddResult = countEvenOdd($numArr);
-echo "Even Count " . ( $evenOddResult[0] ?? null ) . " Odd count " . ( $evenOddResult[1] ?? null );
+echo "Even Count " . ( $evenOddResult[0] ?? null ) . " Odd count " . ( $evenOddResult[1] ?? null ) . " \n";
 
 
 // 3. Reverse Array (in‑place) — Reverse and print in one line.
@@ -176,3 +176,51 @@ function printReverseArr($reverseArray)
 }
 
 printReverseArr($reverseArray);
+
+// 4. Second Largest — If not present, print NA.
+function printSecondLargest($numArr)
+{
+    if(count($numArr) <= 1)
+    {
+        return "N/A";
+    }
+
+    $firstLargest = PHP_INT_MIN;
+    $secondLargest = PHP_INT_MIN;
+
+    $start = 0;
+    $end = count($numArr) - 1;
+
+    while($start <= $end)
+    {
+        if($numArr[$start] > $firstLargest)
+        {
+            $secondLargest = $firstLargest;
+            $firstLargest = $numArr[$start];
+        }
+
+        if($numArr[$end] > $firstLargest)
+        {
+            $secondLargest = $firstLargest;
+            $firstLargest = $numArr[$end];
+        }
+
+        if($numArr[$start] > $secondLargest && $numArr[$start] < $firstLargest)
+        {
+            $secondLargest = $numArr[$start];
+        }
+
+        if($numArr[$end] > $secondLargest && $numArr[$end] < $firstLargest)
+        {
+            $secondLargest = $numArr[$end];
+        }
+
+        $start++;
+        $end--;
+    }
+
+    return $secondLargest;
+}
+
+echo "Second largest value is: " . printSecondLargest($numArr) . " \n";
+
