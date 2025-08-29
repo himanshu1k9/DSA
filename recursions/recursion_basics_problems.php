@@ -44,7 +44,7 @@ function reverseStr($str)
 
 echo reverseStr('Himanshu'). PHP_EOL;
 
-// 4. Find fibonacci number at position N.
+// 4. Find fibonacci series.
 function findFibbonaciRecursive($n, $series = [0,1])
 {
     if (count($series) >= $n) {
@@ -85,3 +85,69 @@ function countDigits($num)
 }
 
 echo countDigits(1234567) . PHP_EOL;
+
+// 7. Write a recursive function to calculate power: X^n
+function calculatePower(int $x, int $n)
+{
+    if($n == 1) {
+        return $x;
+    }
+
+    if($n == 0) {
+        return 1;
+    }
+
+    if($x <= 1)
+    {
+        return $x;
+    }
+
+    $power = $x * calculatePower($x, $n - 1);
+    return $power;
+}
+
+echo calculatePower(1, 100) . PHP_EOL;
+
+// 8. Write a recursive function to find the maximum element in an array.
+function findMaxEle(array &$arr, int $idx = 0, $currMax = null)
+{
+    $length = count($arr);
+    if($idx === $length)
+        return $currMax;
+
+    if($currMax === null)
+        $currMax = $arr[$idx];
+
+    if($arr[$idx] > $currMax)
+        $currMax = $arr[$idx];
+
+    return findMaxEle($arr, $idx + 1, $currMax);
+}
+
+$findMaxArr = [1,2,3,4,5,6,7,8,9];
+
+echo findMaxEle($findMaxArr) . PHP_EOL;
+
+// 9. Write a recursive function to check if a string is palindrome.
+function checkPalindrome(string $str, int $start = 0, int $end = null): bool
+{
+    if($end === null)
+    {
+        $end = strlen($str) - 1;
+    }
+
+    if($start >= $end)
+    {
+        return true;
+    }
+
+    if($str[$start] !== $str[$end])
+    {
+        return false;
+    }
+
+    return checkPalindrome($str, $start + 1, $end - 1);
+}
+
+$palindromeStr = 'abcdcbc';
+echo checkPalindrome($palindromeStr) . PHP_EOL;
