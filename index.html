@@ -1,0 +1,30 @@
+<script>
+  fetch('https://hmtlogistics.com.au/api/orders/download-invoice/8', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2htdGxvZ2lzdGljcy5jb20uYXUvYXBpL2FkbWluL2xvZ2luIiwiaWF0IjoxNzU2MzU4Mzk5LCJleHAiOjE3NTg5NTAzOTksIm5iZiI6MTc1NjM1ODM5OSwianRpIjoiTDJSdEpFSEJJZ0dOSHBDRSIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.NClfUVsAY2Nbu3jsICVubmRFsSXzWMy2i_5E4wMGioI',
+    'Accept': 'application/json'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  if (data.success) {
+    const base64 = data.data.pdf_base64;
+    const fileName = data.data.file_name || 'invoice.pdf';
+
+    downloadPdf(base64, fileName);
+  } else {
+    console.error('Error:', data.message);
+  }
+})
+.catch(err => console.error('Request failed:', err));
+
+function downloadPdf(base64, fileName) {
+  const linkSource = `data:application/pdf;base64,${base64}`;
+  const downloadLink = document.createElement("a");
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
+</script>

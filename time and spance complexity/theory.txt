@@ -1,0 +1,64 @@
+##### Time Complexity
+    Not the acual time taken but amount of time taken as a function of input size n.
+    EX: For linear search
+        : y = x
+        f(x) = x
+        f(n) = m --- Time complexity O(n);
+
+    : Big O Notation [Worst case complexity] - upeer bound.
+
+    For complex 
+    EX F(n) = 5n2 + 3n + 1;
+    S1 Ignore the constant part 
+        f(n) = n2 + n2
+    s2 Consider the maximum value
+     f(n) = n2 => O(n2)
+
+     O(1) < O(logn) < O(n) < O(nlogn) < O(n2) < O(n3) < O(nx) < O(n!)
+
+    # Calculating Time Complexity for Bubble sort:
+        for(i = 0; i < n -1; i++) {
+            for(j = 0; j < n -i - 1; j++) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+
+        for n = 3;
+             outer loop runs: i = 0;   Inner Loop runns: if i = 0 then 3 -0 - 1 = 2
+                              i = 1;                     if i = 1 then 3 - 1 -1 = 1
+                              i = 2;                     if i = 2 then 3 - 2 - 1 = 0
+
+        for n values
+            outer loop runs: i = 0;    inner loop runs: if i = 0 then n - 0 -1 = n - 1;
+                             i = 1;                        i = 1 then n - 1 - 1 = n - 2;
+                             i = 2;                        i = 2 then n - 2 - 1 = n - 3;
+                             .                                          .
+                             .                                          .
+                             .                                          .
+                             i = n - 1;                    i = n - 1 then n - (n - 1) - 1 =  0;       
+
+                             (n - 1) # k + (n - 2) * k + (n - 3) * k + ... + 2k + k
+                             k[(n-1) + (n - 2) + (n - 3) + ... + 2 + 1]
+                             k[n * {(n - 1)/ 2}]
+                             kn2 / 2 + kn /2
+                             after removing constants and considering max value
+                             O(n2);     
+
+        # calculating for binary search:
+            suppose for n
+                n / 2^0
+                n / 2 ^1
+                n / 2^2
+                .
+                .
+                .
+                n / 2 ^ x = 1
+                n = 2 ^ x 
+                taking log in both side 
+                log to base 2 n = x
+                log * n = x
+
+
+##### Space complexity
+    Amount of space taken by an algorithm as function of input size n.
+    In this case we can consider only the oxilary(extra spaces).
