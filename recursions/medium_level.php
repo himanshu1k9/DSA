@@ -52,15 +52,16 @@ echo findSum($numArr, count($numArr)) . PHP_EOL;
                 return;
             }
 
-            $currentWith = $current;     
-            $currentWith[] = $arr[$index];               // Including current element
-            // $current[] = $arr[$index];
-            generateSubsets($arr, $index + 1, $currentWith);
-            // generateSubsets($arr, $index + 1, $current);
+            // $currentWith = $current;     
+            // $currentWith[] = $arr[$index];               // Including current element
+            $current[] = $arr[$index];
+            // generateSubsets($arr, $index + 1, $currentWith);
+            generateSubsets($arr, $index + 1, $current);
 
             // excluding currentaly added element
+            array_pop($current);
             generateSubsets($arr, $index + 1, $current);
         }
 
-        $superSet = [1,2,3];
+        $superSet = [1,2,3,4];
         generateSubsets($superSet);
