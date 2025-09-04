@@ -151,3 +151,15 @@ function checkPalindrome(string $str, int $start = 0, int $end = null): bool
 
 $palindromeStr = 'abcdcbc';
 echo checkPalindrome($palindromeStr) . PHP_EOL;
+
+function caculateFibonacciSeries(int $n): int
+{
+    if($n == 0 || $n == 1)
+    {
+        return $n;
+    }
+
+    return caculateFibonacciSeries($n - 1) + caculateFibonacciSeries($n - 2);
+}
+
+echo caculateFibonacciSeries(5) . PHP_EOL;

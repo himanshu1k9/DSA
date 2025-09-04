@@ -54,7 +54,9 @@ echo findSum($numArr, count($numArr)) . PHP_EOL;
 
             $currentWith = $current;     
             $currentWith[] = $arr[$index];               // Including current element
+            // $current[] = $arr[$index];
             generateSubsets($arr, $index + 1, $currentWith);
+            // generateSubsets($arr, $index + 1, $current);
 
             // excluding currentaly added element
             generateSubsets($arr, $index + 1, $current);
