@@ -65,3 +65,37 @@ echo findSum($numArr, count($numArr)) . PHP_EOL;
 
         $superSet = [1,2,3,4];
         generateSubsets($superSet);
+
+
+    // 2: String Permutations [To check all posible order of a string]
+    /**
+     *  for abc
+     *  abc  
+     *  acb  
+     *  bac  
+     *  bca  
+     *  cab  
+     *  cba
+     * so we can say permutation of a string of length n = n!
+     * EX: n = 3 
+     *     p = 3! = 3 * 2 * 1 = 6
+     */
+
+    function calculatePermutation(string $str, string $prefix = "")
+    {
+        $n = strlen($str);
+        if($n === 0)
+        {
+            echo $prefix . "\n";
+        }
+
+        for($i = 0; $i < $n; $i++)
+        {
+            $current = $str[$i]; // Taking current character
+            $rem = substr($str, 0, $i) . substr($str, $i + 1); // fixing current character.
+            calculatePermutation($rem, $prefix . $current);
+        }
+    }
+
+    $str = "abc";
+    calculatePermutation($str);
