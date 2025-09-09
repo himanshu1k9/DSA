@@ -99,3 +99,100 @@ echo findSum($numArr, count($numArr)) . PHP_EOL;
 
     $str = "abc";
     calculatePermutation($str);
+
+    // 3. Solve “Rat in a Maze” (simple version: can move only down/right).
+    /**
+     * 
+     * 
+     * Given a N x N maze (2D grid), where:
+     *   1 represents a free/open cell
+     *   0 represents a blocked wall
+     *   Start at the top-left cell (0,0) and reach the bottom-right cell (N-1,N-1).
+     *   Allowed Moves:
+     *   Right (i, j+1)
+     *   Down (i+1, j)
+     * 
+     * EX:
+     *      $maze = [
+     *          [1, 0, 0, 0],
+     *          [1, 1, 0, 1],
+     *          [0, 1, 0, 0],
+     *          [1, 1, 1, 1],
+     *        ];
+     * 
+     * 
+     * Expected valid path:
+     * 
+     *          1 0 0 0  
+     *          1 1 0 0  
+     *          0 1 0 0  
+     *          0 1 1 1  
+     * 
+     */
+
+    function isSafe(array $maze, int $x, int $y, int $N): bool
+    {
+        return ($x < $N && $y < $N && $maze[$x][$y] == 1); // either true or false
+    }
+
+    function getValidPath(array $maze, int $x, int $y, array &$solution, $N): bool
+    {
+        if($x == $N - 1 && $y == $N - 1)
+        {
+            $solution[$x][$y] = 1;
+            return true;
+        }
+
+        if(isSafe($maze, $x, $y, $N))
+        {
+            $solution[$x][$y] = 1;
+            // move right
+            if(getValidPath($maze, $x, $y + 1, $solution, $N))
+            {
+                return true;
+            }
+
+            // move down
+            if(getValidPath($maze, $x + 1, $y, $solution, $N))
+            {
+                return true;
+            }
+
+            // backtrack
+            $solution[$x][$y] = 0;
+            return false;
+        }
+        return false;
+    }
+
+    function solveMaze(array $maze)
+    {
+        $N = count($maze);
+        $solution = array_fill(0, $N, array_fill(0, $N, 0));
+
+        if(!getValidPath($maze, 0, 0, $solution, $N))
+        {
+            echo "No Path Found. \n";
+            return;
+        }
+
+        echo "Path found: \n";
+        for($i = 0; $i < $N; $i++) 
+        {
+            for($j = 0; $j < $N; $j++)
+            {
+                echo $solution[$i][$j] . " ";
+
+            }
+             echo "\n";
+        }
+    }
+
+    $maze = [
+        [1, 0, 0, 0],
+        [1, 1, 0, 1],
+        [0, 1, 0, 0],
+        [1, 1, 1, 1],
+    ];
+
+solveMaze($maze);
