@@ -196,3 +196,29 @@ echo findSum($numArr, count($numArr)) . PHP_EOL;
     ];
 
 solveMaze($maze);
+
+// 4. Write a recursive function to check if a string is palindrome.
+function checkPalindrome(string $str, int $s, int $e): bool 
+{
+    $n = strlen($str);
+    if($s == $e) {
+        return true;
+    }
+
+    if($n <= 2 && $n > 0) {
+        return true;
+    }
+
+    if($str[$s] == $str[$e]) {
+        return true;
+    } else {
+        return false;
+    }
+
+    checkPalindrome($str, $s + 1, $e + 1);
+
+}
+
+$str = "abcdcbae";
+$resultPal = checkPalindrome($str, 0, strlen($str) - 1);
+echo $resultPal . "\n";
